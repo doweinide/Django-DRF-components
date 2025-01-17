@@ -1,0 +1,76 @@
+# Python通用忽略文件
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+
+# 虚拟环境文件夹
+env/
+venv/
+.venv/
+
+# 数据库文件
+*.sqlite3
+*.db
+
+# 环境变量文件
+.env
+*.env.*
+
+# 静态文件
+/staticfiles/
+/media/
+/static/
+
+# Django迁移文件（根据需要忽略，建议保留以便项目可复现）
+# 如果需要忽略迁移文件，取消以下行的注释
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# IDE 和编辑器配置文件
+.idea/
+.vscode/
+*.sublime*
+
+# 本地开发工具
+*.coverage
+*.cover
+htmlcov/
+.coverage.*
+
+# 日志文件
+*.log
+logs/
+
+# Celery & Django Channels相关
+celerybeat-schedule
+celerybeat.pid
+*.pid
+*.sock
+
+# Docker文件
+*.log
+*.pid
+.docker/
+docker-compose.override.yml
+
+# 前端构建文件（如果有）
+/node_modules/
+/dist/
+/build/
+
+# 自动生成的文档
+*.rst
+*.pdf
+*.docx
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
