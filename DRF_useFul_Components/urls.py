@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/', include('upload_files_app.urls')),
     path('email/', include('email_app.urls')),
+    path('SSE/', include('SSE_app.urls')),
+    path('html/', include('show_html_app.urls')),
 ]

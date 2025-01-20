@@ -36,9 +36,16 @@ SECRET_KEY = 'django-insecure-0#=luofq1d%xdz30ly6c=_+lomx@_m&d59d3s@ofm=oky1pmxt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.9','127.0.0.1','http://localhost:5778']
 
-
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5778',  # 允许的域名
+    'http://127.0.0.1',
+    'http://192.168.1.9',     # 另一个允许的域名
+    'http://127.0.0.1:5500'
+]
+# 启用 CORS 允许所有域名访问（仅适用于开发环境）
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,22 +54,39 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',  # 异步（SSE）
+
     'django.contrib.staticfiles',
     'rest_framework',  # DRF 框架
+    'corsheaders',#跨域问题
     'rest_framework_simplejwt', #simplejwt
-    'email_app',
-    'upload_files_app'
+    'email_app',#邮箱app
+    'upload_files_app', #上传文件的app
+    'SSE_app',#serve send events 示例
+    'show_html_app',
+    'channels',
+    'channels_app'#webSocket
 ]
-
+# 配置 WebSocket 使用的通道层（这里用内存作为示例）
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # 开发环境使用内存层
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 8000)],
+        },
+    },
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',#跨域问题
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+ASGI_APPLICATION = "DRF_useFul_Components.asgi.application"
 
 ROOT_URLCONF = 'DRF_useFul_Components.urls'
 
@@ -82,7 +106,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DRF_useFul_Components.wsgi.application'
+# WSGI_APPLICATION = 'DRF_useFul_Components.wsgi.application'
 
 
 # Database
@@ -181,3 +205,5 @@ SIMPLE_JWT = {
     'SIGNING_KEY': config('JWT_SIGNING_KEY', default='your-secret-key'),  # 签名密钥
     'VERIFYING_KEY': None,  # 验证密钥
 }
+
+
