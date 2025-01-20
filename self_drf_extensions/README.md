@@ -128,10 +128,10 @@ def custom_response(data, status_code=200, message="success"):
 当你需要使用这些封装的类时，只需直接从封装包中导入：
 
 ```python
-from my_drf_extensions.views import SearchableListModelMixin
-from my_drf_extensions.serializers import BaseSerializer
-from my_drf_extensions.models import BaseModel
-from my_drf_extensions.utils import custom_response
+from self_drf_extensions.views import SearchableListModelMixin
+from self_drf_extensions.serializers import BaseSerializer
+from self_drf_extensions.models import BaseModel
+from self_drf_extensions.utils import custom_response
 ```
 
 这种分类方式使代码结构清晰，方便开发和扩展。

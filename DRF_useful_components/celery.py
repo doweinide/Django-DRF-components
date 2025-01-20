@@ -4,10 +4,10 @@ import os
 from celery import Celery
 
 # 设置默认的 Django 设置模块
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DRF_useFul_Components.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DRF_useful_components.settings')
 
 # 创建一个 Celery 实例
-app = Celery('DRF_useFul_Components')
+app = Celery('DRF_useful_components')
 
 # 使用字符串形式配置 Celery，'CELERY_BROKER_URL' 指定了消息代理
 app.config_from_object('django.conf:settings', namespace='CELERY')

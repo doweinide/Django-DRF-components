@@ -3,60 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSE Example</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #events {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            width: 300px;
-            height: 200px;
-            overflow-y: scroll;
-        }
-        .event {
-            padding: 5px;
-            margin-bottom: 5px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-        }
-    </style>
+    <title>SSE Demo</title>
 </head>
 <body>
-    <h1>SSE Example</h1>
-    <p>This example shows server-sent events in real-time:</p>
-
+    <h1>实时事件</h1>
     <div id="events"></div>
 
     <script>
-        // 创建一个新的 EventSource 对象，指向 SSE API 端点
-        const eventSource = new EventSource('/SSE/test_sse/'
-        ); // 修改为你的SSE端点
-        console.log('发送了')
-        // 当接收到消息时触发
+        const eventSource = new EventSource('/sse/events/');
+
         eventSource.onmessage = function(event) {
-            // 创建一个新的事件元素并添加到页面中
-            const eventDiv = document.createElement('div');
-            eventDiv.className = 'event';
-            eventDiv.textContent = event.data;  // 显示服务器发送的消息
-            document.getElementById('events').appendChild(eventDiv);
-
-            // 滚动到底部以显示最新的消息
+            const eventData = event.data;
             const eventsDiv = document.getElementById('events');
-            eventsDiv.scrollTop = eventsDiv.scrollHeight;
+            const newMessage = document.createElement('p');
+            newMessage.textContent = eventData;
+            eventsDiv.appendChild(newMessage);
+
+            // 在接收到数据后关闭连接
+            eventSource.close();
         };
 
-        // 处理连接打开时的事件
-        eventSource.onopen = function() {
-            console.log('Connection to server opened.');
-        };
-
-        // 处理发生错误时的事件
-        eventSource.onerror = function(error) {
-            console.error('Error occurred:', error);
+        eventSource.onerror = function(event) {
+            console.error("SSE Errordsaf:", event);
+            // 输出错误信息
+            alert("发生错误: " + JSON.stringify(event));
         };
     </script>
 </body>

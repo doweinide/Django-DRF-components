@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
-from my_drf_extensions.views import SearchableListModelMixin
+from self_drf_extensions.views import SearchableListModelMixin
 from .models import Role, Permission, UserRole, RolePermission,CustomUser
 from .serializers import RoleSerializer, PermissionSerializer, UserRoleSerializer, RolePermissionSerializer, \
     UserSerializer, CustomUserSerializer

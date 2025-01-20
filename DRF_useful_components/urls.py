@@ -1,5 +1,5 @@
 """
-URL configuration for DRF_useFul_Components project.
+URL configuration for DRF_useful_components project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/', include('upload_files_app.urls')),
     path('email/', include('email_app.urls')),
-    path('SSE/', include('SSE_app.urls')),
+    path('SSE/', include('sse_app.urls')),
     path('html/', include('show_html_app.urls')),
 ]
