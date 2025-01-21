@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     'sse_app',#serve send events 示例
     'show_html_app',
     'channels',   #使用websocket的依赖
-    'webSocket_app'  #webSocket
+    'webSocket_app',  #webSocket
+    'report_app' #导出pdf，exword的应用
 ]
 # 配置 WebSocket 使用的通道层（这里用内存作为示例）
 CHANNEL_LAYERS = {

@@ -23,4 +23,5 @@ urlpatterns = [
     path('email/', include('email_app.urls')),
     path('SSE/', include('sse_app.urls')),
     path('html/', include('show_html_app.urls')),
+    path('report/', include('report_app.urls')),
 ]
