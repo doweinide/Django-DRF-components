@@ -8,9 +8,9 @@ from .views import (
 
 urlpatterns = [
     # ==========================
-    # 分片上传
+    # 分片上传,断点上传
     # ==========================
-    path('upload/videos', UploadChunkView.as_view(), name='upload_chunk'),
+    path('upload/files', UploadChunkView.as_view(), name='upload_chunk'),
     path('upload/uploaded-chunks', GetUploadedChunksView.as_view(), name='get_uploaded_chunks'),
     path('upload/complete', CompleteUploadView.as_view(), name='complete_upload'),
 

@@ -153,7 +153,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -204,5 +206,24 @@ SIMPLE_JWT = {
     'SIGNING_KEY': config('JWT_SIGNING_KEY', default='your-secret-key'),  # 签名密钥
     'VERIFYING_KEY': None,  # 验证密钥
 }
+
+
+# 设置上传文件大小限制
+
+MAX_UPLOAD_SIZES = {
+    'images': 5 * 1024 * 1024,  # 最大图片上传大小：5MB
+    'videos': 50 * 1024 * 1024,  # 最大视频上传大小：50MB
+    'audio': 20 * 1024 * 1024,   # 最大音频上传大小：20MB
+    'documents': 10 * 1024 * 1024,  # 最大文档上传大小：10MB
+    'archives': 50 * 1024 * 1024,  # 最大压缩文件上传大小：50MB
+    'others': 10 * 1024 * 1024,  # 其他文件类型上传大小：10MB
+}
+import os
+
+# MEDIA_URL 用于生成可公开访问的文件 URL
+MEDIA_URL = '/media/'
+
+# MEDIA_ROOT 是实际文件存储的路径
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
